@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Eventos JS</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+  <body>
+  	
+		<div class="container text-center">
+			<h2>Evento 1: Mudar o background</h2>
+			<br>
+			<div class="row">
+				<div class="col">
+						Utilizando val();
+					<br>
+					<br>
+					<div class="click">
+						Clique para mudar a cor <input type="hidden" value="sim">
+					</div>
+				</div>
+				<div class="col">
+					Utilizando o attr();
+					<br>
+					<br>
+					<div class="click2">
+						<input type="text" class="clickAttr" data-value="acheiAttr">
+					</div>
+				</div>
+				<div class="col">
+						Utilizando o data();
+					<br>
+					<br>
+					<div class="click3">
+						<input type="text" class="clickData" data-vlr="acheiData">
+					</div>
+				</div>
+			</div>
+			<hr>
+      </br>
+			<!-- ============================================================================== -->
+			<h2>Evento 2: Eventos</h2>
+
+			<table class="table">
+				<thead class="thead-dark">
+					<tr>
+						<th scope="col" class="classLimpar">Limpar</th>
+						<th scope="col">Clique no texto para alterar a cor</th>
+						<th scope="col" class="classStatus">Status</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-status="on">
+						<td value="limpa">Roberto</td>
+						<td class="classCor" value="azul">Azul</td>
+						<td data-status="on">On</td>
+					</tr>
+					<tr>
+						<td value="limpa">Sabrina</td>
+						<td class="classCor" value="vermelho">Vermelho</td>
+						<td data-status="off">Off</td>
+					</tr>
+					<tr data-status="on">
+						<td value="limpa">Lucas</td>
+						<td class="classCor" value="verde">Verde</td>
+						<td data-status="on">On</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- ============================================================================== -->
+			<h2>Evento 3: Agregar Msg ao HTML</h2>
+			<br>
+			<div class="col">
+				<div class="addMsg" id="aqui">
+					<a href="#aqui">Clique aqui para ver meu nome:</a> <div class="meuNome"></div> 
+				</div>
+			</div>
+      <hr>
+      <!-- ============================================================================== -->
+      <h2>Evento 4: keydown</h2>
+      </br>
+      <div class="row">
+        <div class="col">
+          Value limpado ao remover um caracter<br>
+          <input type="text" class="" value="Input sem evento">
+          <input type="text" class="keydown" value="Input com evento">
+        </div>
+      </div>
+      <hr>
+      <!-- ============================================================================== -->
+      <h2>Evento 5: keyup</h2>
+      </br>
+      <div class="row">
+        <div class="col">
+          <p>Cada letra digitada um evento dispara</p>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" id="validaKeyup">
+        </div>
+        <div class="col">
+          <p id="printKeyup"></p>
+        </div>
+      </div>
+      <hr>
+      <!-- ============================================================================== -->
+      <h2>Evento 6: change</h2>
+      <br>
+      <div class="row">  
+        <div class="col">
+          <p>O evento vai ser disparado quando eu selecionar uma das opções.</p>
+        </div>
+        <div class="col">
+          <form name="frmChange">
+            <select class="classChange">
+              <option value="Valor 1">Pegar 1</option>
+              <option value="Valor 2">Pegar 2</option>
+              <option value="Valor 3">Pegar 3</option>
+            </select>
+          </form>
+        </div>
+        <div class="col">
+          <div id="exibeChange"> Mostrar o valor aqui </div>
+        </div>
+      </div>
+
+      <!-- ============================================================================== -->
+      <h2>Evento 7: match</h2>
+      </br>
+      <div class="row">  
+        <div class="col">
+          <p>Validar campo com números ou letras</p>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" id="validaMatch">
+        </div>
+        <div class="col">
+          <button class="btn btn-outline-primary" id="btnValidar">Validar</button>
+        </div>
+      </div>
+
+
+
+		</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <script>
+    /*================================================================*/
+		//EVENTO 1
+    	$(".click").click(function(){
+    		var val_input = ($(".click").val() == "sim" ? "nao" : "sim"); 
+    		console.log(val_input);
+
+    		if(val_input == "sim"){
+    			$(".click").val("sim");
+    			$(this).css("background","green");
+
+    		}else{
+    			$(".click").val("nao");
+    			$(this).css("background","red");
+    		}
+    	});
+
+
+		//ATTR
+    $(".click2").click(function(){
+
+    		// var input_name = $(".clicado").attr("name");
+    		// console.log(input_name);
+    		// var val_input = '[data-value=' + input_name + ']';
+    		// console.log(val_input);
+    		
+    		var val_input = $(this).attr("data-value");
+    		console.log(val_input);
+
+    		if(val_input == "acheiAttr"){
+    			$(".clickAttr").val("acheiAttr");
+    			$(this).css("background", "blue");
+    			$(this).attr("data-value", "naoAchei");
+
+    		}else if(val_input == "naoAchei") {
+    			$(".clickAttr").val("naoAchei");
+    			$(this).css("background", "red");
+    			$(this).attr("data-value", "null");
+    		} else{
+    			$(".clickAttr").val("null");
+    			$(this).css("background", "black");
+    			$(this).attr("data-value", "acheiAttr");
+    		}
+
+    	});
+
+    	//DATA
+    	$(".click3 .clickData").click(function(){
+    		var val_input = $(".clickData").data("vlr");
+    		console.log(val_input);
+
+    		if(val_input == "acheiData"){
+    			//se o valor do data-vlr = 'acheiData'
+    			$(".clickData").val("ACHOOOU");
+    			$(this).css({
+    				background: "black",
+    				color: "#fff"
+    			});
+    		}else{
+    			$(".clickData").val("não achei");
+    			$(this).css("background", "red");
+    		}
+
+    	});
+
+
+    	/*============================== EVENTO 2 ==================================*/
+    	//LIMPAR
+    	$(".classLimpar").click(function(){
+    		var limpa = $("td[value='limpa']").attr("value");
+    		console.log(limpa);
+
+
+    		if (limpa == "limpa"){
+    			$(".classLimpar").html("<button onclick='reload()'>Reload</button>");
+    			$("td[value='limpa']").html(" ");
+    			$("td[value='limpa']").css("cursor", "wait");
+    		}else{
+    			$("td[value='limpa']").html("Erro ao limpar");
+    			$("td[value='limpa']").css("cursor", "wait");
+    		}
+
+    	});
+
+      //ALTERAR COR DO TEXTO
+      $(".classCor").click(function(){
+          var cor = $(this).attr("value"); 
+          console.log(cor);
+
+          if(cor == "azul"){
+              $(this).val("azul");
+              $(this).css("color","blue");
+          }else if(cor == "verde"){
+              $(this).val("verde");
+              $(this).css("color","green");
+          }else{
+              $(this).val("vermelho");
+              $(this).css("color","red");
+          }
+      });
+
+      //STATUS
+      $(".classStatus").click(function(){
+        var status = $("td[data-status='on']").data("status");
+        if (status == "on"){
+          $("tr[data-status='on']").css("display", "none");
+        }else{
+          $("td[data-status='on']").html("Status não disponível");
+        }
+    	});
+
+
+    	/*================================================================*/
+    	//EVENTO 3
+    	$(".addMsg").click(function(){
+    		$(".meuNome").html("Roberto Enrico");
+    	});
+
+        
+      /*================================================================*/
+      //EVENTO 4
+      $(".keydown").keydown(function () {
+          $(".keydown").val('');
+      });
+      //  $("#cep").keydown(function (tab) {
+      //    if (tab.which == 8) {
+      //      $(".oculta_cep").hide();
+      //      $(".limpa_cep").val('');
+      //    }
+      //  });
+      /*================================================================*/
+      //EVENTO 5
+      $('#validaKeyup').keyup(function(){
+        var keyup = $(this).val();
+        $('#printKeyup').html(keyup);
+      });
+      
+      /*================================================================*/
+      //EVENTO 6
+      $('.classChange').change(function() {
+          var change = $("option:selected").val();
+          $("#exibeChange").html('O valor selecionado é: ' + change);
+      });
+
+      /*================================================================*/
+      //EVENTO 7
+      $('#btnValidar').click(function() {
+        // if (($('#ValidaInput').val().match(/[0-9]/) || $('#ValidaInput').val().match('V')) == null){
+        if ($('#ValidaMatch').val().match(/[0-9]/) == null){
+          console.log("Inserir um número ou 'V' ou 'v'");
+        }else{
+          console.log("ok");
+        }
+      });
+    </script>
+
+  </body>
+</html>
