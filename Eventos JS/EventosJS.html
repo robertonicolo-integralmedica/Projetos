@@ -79,7 +79,7 @@
       </div>
       <hr>
       <!-- ============================================================================== -->
-      <p><h2>Evento 4: keydown</h2></p>
+      <p><h2>Evento 4: .keydown();</h2></p>
       <div class="row">
         <div class="col">
           <p>Value limpado ao remover um caracter</p>
@@ -93,7 +93,7 @@
       </div>
       <hr>
       <!-- ============================================================================== -->
-      <p><h2>Evento 5: keyup</h2></p>
+      <p><h2>Evento 5: .keyup();</h2></p>
       <div class="row">
         <div class="col">
           <p>Cada letra digitada um evento dispara</p>
@@ -107,7 +107,7 @@
       </div>
       <hr>
       <!-- ============================================================================== -->
-      <p><h2>Evento 6: change</h2></p>
+      <p><h2>Evento 6: .change();</h2></p>
       <div class="row">
         <div class="col">
           <p>O evento vai ser disparado quando eu selecionar uma das opções.</p>
@@ -127,7 +127,7 @@
       </div>
       <hr>
       <!-- ============================================================================== -->
-      <p><h2>Evento 7: match</h2></p>
+      <p><h2>Evento 7: .match();</h2></p>
       <div class="row">
         <div class="col">
           <p>Validar campo com números ou letras</p>
@@ -141,7 +141,7 @@
       </div>
       <hr>
       <!-- ============================================================================== -->
-      <p><h2>Evento 8: swal</h2></p>
+      <p><h2>Evento 8: .swal();</h2></p>
       <div class="row">
         <div class="col">
           <p>Alert em Bootstrap</p>
@@ -150,9 +150,46 @@
           <button class="btn btn-outline-warning" id="btnSwal">Clique para disparar o Alert</button>
         </div>
       </div>
+      <hr>
+      <!-- ============================================================================== -->
+      <p><h2>Evento 9: .focus();</h2></p>
+      <div class="row">
+        <div class="col">
+          <p>Clique no botao para focar no input</p>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control dd" id="validaFocus">
+        </div>
+        <div class="col">
+          <button class="btn btn-outline-dark" id="btnFocus">Focus no Input</button>
+        </div>
+      </div>
+      <hr>
+      <!-- ============================================================================== -->
+      <p><h2>Evento 10: .addClass();</h2></p>
+      <div class="row">
+        <div class="col">
+          <p>Clique no botao para ADD Class</p>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" id="validaClass" required>
+        </div>
+        <div class="col">
+          <button class="btn btn-outline-dark" id="btnClass">Add Class</button>
+        </div>
+      </div>
+      <hr>
+
+
+
+
+
+
+
+
+
+
     </div>
-
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -318,6 +355,18 @@
       //   timer: 1200,
       //   showConfirmButton: false
       // });
+    });
+
+    /*================================================================*/
+    //EVENTO 9
+    $('#btnFocus').click(function() {
+      $("#validaFocus").focus();
+    });
+
+    /*================================================================*/
+    //EVENTO 10
+    $('#btnClass').click(function() {
+      $("#validaClass").addClass("alert alert-danger");
     });
 
 
