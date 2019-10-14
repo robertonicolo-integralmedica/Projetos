@@ -18,10 +18,10 @@ if (isset($_POST['mail'])) {
 	$mail->IsSMTP();
 	// $mail->Host = 'smtp.gmail.com';                 
 	// $mail->Host = 'smtp.live.com';                 
-	$mail->Host = '10.0.0.143';                 
+	$mail->Host = 'smtp.office365.com';
 	$mail->SMTPAuth = true;                            
 	// $mail->Username = 'robertoenricon@gmail.com';              
-	$mail->Username = 'robertoenrico_@hotmail.com.br';              
+	$mail->Username = 'robertoenrico_@hotmail.com';              
 	$mail->Password = $pass;                       
 	
 	$mail->SMTPSecure = 'tls';                          
@@ -36,7 +36,7 @@ if (isset($_POST['mail'])) {
 	// $mail->SMTPDebug = 4; //Exibe todas as mensagens, incluindo detalhes da comunicação
 
 	// $mail->setFrom('robertoenricon@gmail.com', 'Sistema do Beto'); //Remetente
-	$mail->setFrom('robertoenrico_@hotmail.com.br', 'Sistema do Beto'); //Remetente
+	$mail->setFrom('robertoenrico_@hotmail.com', 'Sistema do Beto'); //Remetente
 
 	$mail->AddAddress($email); //Destinatarios
 
