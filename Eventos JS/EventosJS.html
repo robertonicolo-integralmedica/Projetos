@@ -172,10 +172,25 @@
           <p>Clique no botao para ADD Class</p>
         </div>
         <div class="col">
-          <input type="text" class="form-control" id="validaClass" required>
+          <input type="text" class="form-control" id="validaClass">
         </div>
         <div class="col">
           <button class="btn btn-outline-dark" id="btnClass">Add Class</button>
+        </div>
+      </div>
+      <hr>
+      <!-- ============================================================================== -->
+      <p><h2>Evento 11: .paste();</h2></p>
+      <div class="row">
+        <div class="col">
+          <p>Campo não permite CRTL + V</p>
+        </div>
+        <div class="col">
+          <input type="text" class="form-control" value="Copiar aqui">
+        </div>
+        <div class="col">
+          Cole aqui
+          <input type="text" class="form-control" id="inputPaste">
         </div>
       </div>
       <hr>
@@ -369,6 +384,12 @@
       $("#validaClass").addClass("alert alert-danger");
     });
 
+    /*================================================================*/
+    //EVENTO 11
+    $("#inputPaste").bind('paste', function(e) {
+      e.preventDefault();
+      swal("Atenção!", "Proibido uso do CTRL + V", "error");
+    });
 
 
 
