@@ -18,14 +18,16 @@ if (isset($_POST['mail'])) {
 	$mail->IsSMTP();
 	// $mail->Host = 'smtp.gmail.com';                 
 	// $mail->Host = 'smtp.live.com';                 
-	$mail->Host = 'smtp.office365.com';
-	$mail->SMTPAuth = true;                            
-	// $mail->Username = 'robertoenricon@gmail.com';              
-	$mail->Username = 'robertoenrico_@hotmail.com';              
+	// $mail->Host = 'smtp.office365.com';
+	$mail->Host = '10.0.0.135';
+	$mail->SMTPAuth = false;                            
+	// $mail->Username = 'robertoenricon@gmail.com';             
+	$mail->Username = 'roberto.nicolo@integralmedica.com.br';              
 	$mail->Password = $pass;                       
 	
-	$mail->SMTPSecure = 'tls';                          
-	$mail->Port = 587;
+	$mail->SMTPSecure = 'STARTTLS';                          
+	$mail->Port = 25;
+	// $mail->Port = 587;
 	
 	// $mail->SMTPSecure = 'ssl'; //google                          
 	// $mail->Port = 465; //google
@@ -36,7 +38,7 @@ if (isset($_POST['mail'])) {
 	// $mail->SMTPDebug = 4; //Exibe todas as mensagens, incluindo detalhes da comunicação
 
 	// $mail->setFrom('robertoenricon@gmail.com', 'Sistema do Beto'); //Remetente
-	$mail->setFrom('robertoenrico_@hotmail.com', 'Sistema do Beto'); //Remetente
+	$mail->setFrom('roberto.nicolo@integralmedica.com.br', 'Sistema do Beto'); //Remetente
 
 	$mail->AddAddress($email); //Destinatarios
 
@@ -44,7 +46,7 @@ if (isset($_POST['mail'])) {
 
 	$html = 'Corpo do email';
 
-	$mail->Subject = 'Solicitação de Update de senha - ' . $email;
+	$mail->Subject = 'Titulo - ' . $email;
 	$mail->Body    = $html;
 	$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

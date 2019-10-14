@@ -1,7 +1,7 @@
 
 
 
-<?php $pass = "@!_15385wala";
+<?php $pass = "@!_15385waWA";
 
 if (!isset($_POST['mail'])) { ?>
 
