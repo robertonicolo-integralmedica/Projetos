@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>VALIDA CNPJ</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+  </head>
+  <body>
+      
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h2>Validar CNPJ</h2>
+          <form method="POST" id="validaCNPJ">
+            <input class="form-control" id="limpaCNPJ"><br>
+            <button type="submit" class="btn btn-outline-danger">Validar</button>
+            <h4 id="validado"></h4>
+          </form>
+        </div>
+      </div>
+    </div>
+    
+
+    <script>
+      $(document).ready(function(){
+        $('#validaCNPJ').bind('submit', function(e) {
+          e.preventDefault();
+          
+          var cnpj	= $('#limpaCNPJ').val().replace(/(?!(\d))([\w\.\/\-])/g, '');
+          
+          // var cnpj = '09623677000150'; //CNPJ valido
+          
+          // var cnpj = '09623677000158'; //CNPJ invalido
+
+          // var cnpj = '34855862000118'; //Erro Time-out
+
+          // var cnpj = '35.417.058/0001-10';
+          console.log(cnpj);
+
+          if(cnpj != '' && cnpj.length != 14) {
+            $('#validado').html('Atenção! CNPJ com número de digitos inválido!'); 
+          }
+                    
+          $.ajax({
+            type 	: 'POST',
+            url 	: 'valida.script.php',
+            data 	: { 
+              'cnpj'	: cnpj,
+            },
+            success : function(data) {
+              data 	= $.parseJSON(data);
+              console.log(data);
+
+              if(!data){
+                $('#validado').html(data.message);
+              }else{
+                if(data.info.status == "OK") {
+                  $('#validado').html(data.info.nome+'<br>'+data.info.municipio+'<br>'+data.info.status+'<br>');
+                }else{
+                  if(data.info.status == "ERROR") {
+                    $('#validado').html(data.info.message);
+                  }
+                }
+              }
+
+            },
+            error 	: function(data) {
+              receita_information(cnpj);
+            }
+          });
+        });
+      }); 
+    </script>
+        
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Ajax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  </body>
+</html>
