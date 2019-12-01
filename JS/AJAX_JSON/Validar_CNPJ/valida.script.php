@@ -1,7 +1,5 @@
 <?php
 
-
-
 if(isset($_POST['cnpj'])){
     $content 	= file_get_contents('http://www.receitaws.com.br/v1/cnpj/' . $_POST['cnpj']);
     $content 	= @json_decode($content);
