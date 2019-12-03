@@ -20,7 +20,8 @@
           <form method="POST" id="validaCNPJ">
             <input class="form-control" id="limpaCNPJ"><br>
             <button type="submit" class="btn btn-outline-danger">Validar</button>
-            <h4 id="validado"></h4>
+            <p><h4 id="validado"></h4></p>
+            
           </form>
         </div>
       </div>
@@ -34,14 +35,11 @@
           
           var cnpj	= $('#limpaCNPJ').val().replace(/(?!(\d))([\w\.\/\-])/g, '');
           
-          // var cnpj = '09623677000150'; //CNPJ valido
-          
           // var cnpj = '09623677000158'; //CNPJ invalido
 
           // var cnpj = '34855862000118'; //Erro Time-out
 
           // var cnpj = '35.417.058/0001-10';
-          console.log(cnpj);
 
           if(cnpj != '' && cnpj.length != 14) {
             $('#validado').html('Atenção! CNPJ com número de digitos inválido!'); 
@@ -53,25 +51,33 @@
             data 	: { 
               'cnpj'	: cnpj,
             },
-            success : function(data) {
-              data 	= $.parseJSON(data);
-              console.log(data);
-
-              if(!data){
-                $('#validado').html(data.message);
-              }else{
-                if(data.info.status == "OK") {
-                  $('#validado').html(data.info.nome+'<br>'+data.info.municipio+'<br>'+data.info.status+'<br>');
-                }else{
-                  if(data.info.status == "ERROR") {
-                    $('#validado').html(data.info.message);
-                  }
-                }
+            statusCode: {
+              //caira aqui se a requisição for passada errada
+              404: function () {
+                $('#validado').html("Página não encontrada");
               }
-
+            },
+            beforeSend: function() {
+              $('#validado').html("Aguarde, Carregando...");
+            }, 
+            success : function(data) {
+              retornoAPI 	= $.parseJSON(data);
+              console.log(data);
+              
+              if(!data){
+                $('#validado').html('dasdas');
+              }else if(retornoAPI.info.status == "OK") {
+                $('#validado').html(
+                  "Nome: "+retornoAPI.info.nome+'<br>'+
+                  "Porte: "+retornoAPI.info.porte+'<br>'+
+                  "Status: "+retornoAPI.info.status
+                );
+              }else if(retornoAPI.info.status == "ERROR") {
+                $('#validado').html(retornoAPI.info.message);
+              }
             },
             error 	: function(data) {
-              receita_information(cnpj);
+              alert("Erro:");
             }
           });
         });
