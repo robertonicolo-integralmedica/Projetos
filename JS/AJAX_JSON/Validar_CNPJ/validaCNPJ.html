@@ -61,6 +61,8 @@
               $('#validado').html("Aguarde, Carregando...");
             }, 
             success : function(data) {
+              // if(_patt_json.test(data)) {
+                // data   = sucess.match(_patt_json)[0];
               retornoAPI 	= $.parseJSON(data);
               console.log(data);
               
