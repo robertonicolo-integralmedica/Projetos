@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>VALIDA CNPJ</title>
+    <title>VALIDA CEP</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,9 +16,9 @@
     <div class="container">
       <div class="row">
         <div class="col">
-          <h2>Validar CNPJ</h2>
-          <form method="POST" id="validaCNPJ">
-            <input class="form-control" id="limpaCNPJ"><br>
+          <h2>Validar CEP</h2>
+          <form method="POST" id="validaCEP">
+            <input class="form-control" id="limpaCEP"><br>
             <button type="submit" class="btn btn-outline-danger">Validar</button>
             <p><h4 id="validado"></h4></p>
             
@@ -30,29 +30,16 @@
 
     <script>
       $(document).ready(function(){
-        $('#validaCNPJ').bind('submit', function(e) {
+        $('#validaCEP').bind('submit', function(e) {
           e.preventDefault();
           
-          var cnpj	= $('#limpaCNPJ').val().replace(/(?!(\d))([\w\.\/\-])/g, '');
-          
-          // var cnpj = '09623677000158'; //CNPJ invalido
-
-          // var cnpj = '34855862000118'; //Erro Time-out
-
-          // var cnpj = '35.417.058/0001-10';
-
-          if(cnpj != '' && cnpj.length != 14) {
-            $('#validado').html('Atenção! CNPJ com número de digitos inválido!'); 
-          }
+          var cep	= $('#limpaCEP').val().replace(/(?!(\d))([\w\.\/\-])/g, '');
                     
           $.ajax({
             type 	: 'POST',
-            url 	: 'valida.script.php',
-            data 	: { 
-              'cnpj'	: cnpj,
-            },
+            url 	: 'api.postmon.com.br/v1/cep/02471210',
             statusCode: {
-              //caira aqui se a requisição for passada errada
+              //caira URL for passada errada
               404: function () {
                 $('#validado').html("Página não encontrada");
               }
@@ -61,24 +48,11 @@
               $('#validado').html("Aguarde, Carregando...");
             }, 
             success : function(data) {
-              // if(_patt_json.test(data)) {
-                // data   = sucess.match(_patt_json)[0];
-              retornoAPI 	= $.parseJSON(data);
+              data = $.parseJSON(data);
               console.log(data);
-              
-              if(!data){
-                $('#validado').html('dasdas');
-              }else if(retornoAPI.info.status == "OK") {
-                $('#validado').html(
-                  "Nome: "+retornoAPI.info.nome+'<br>'+
-                  "Porte: "+retornoAPI.info.porte+'<br>'+
-                  "Status: "+retornoAPI.info.status
-                );
-              }else if(retornoAPI.info.status == "ERROR") {
-                $('#validado').html(retornoAPI.info.message);
-              }
+              alert(data);
             },
-            error 	: function(data) {
+            error : function(data) {
               alert("Erro:");
             }
           });
